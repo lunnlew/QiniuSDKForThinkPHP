@@ -110,7 +110,7 @@ class QiniuRSTransferSDK extends QiniuSDK{
 	 * @param string $localFile 文件名
 	 * @param int $CheckCrc  是否计算crc
 	 */
-	public function PutFile($upToken, $key, $localFile, $CheckCrc){
+	public function PutFile($upToken, $key, $localFile, $CheckCrc=1){
 		$this->CheckCrc = $CheckCrc;
 		$fields = array('token' => $upToken, 'file' => '@' . $localFile);
 		if ($key === null) {
@@ -128,6 +128,40 @@ class QiniuRSTransferSDK extends QiniuSDK{
 			$fields['crc32'] = sprintf('%u', $this->Crc32);
 		}
 		return parent::CallWithForm($this->ApiBase, $fields,'multipart/form-data');
+	}
+
+	/**
+	 * 生成地址
+	 * @param srting $key    文件名
+	 * @param string $domain 下载域
+	 */
+	public function MakeBaseUrl($key,$domain=''){
+		if($domain!=''){
+			$this->downDomain = $domain;
+		}
+		$keyEsc = rawurlencode($key);
+		return "http://$this->downDomain/$keyEsc";
+	}
+	/**
+	 * 生成私有地址
+	 * @param srting $baseUrl 基础URL
+	 */
+	public function MakePrivateUrl($baseUrl){
+		$deadline = $this->Expires;
+		if ($deadline == 0) {
+			$deadline = 3600;
+		}
+		$deadline += time();
+
+		$pos = strpos($baseUrl, '?');
+		if ($pos !== false) {
+			$baseUrl .= '&e=';
+		} else {
+			$baseUrl .= '?e=';
+		}
+		$baseUrl .= $deadline;
+		$token = parent::Sign($baseUrl);
+		return "$baseUrl&token=$token";
 	}
 }
 ?>

@@ -366,40 +366,5 @@ abstract class QiniuSDK{
 		}
 		return array($data, self::getReponseErr());
 	}
-
-	/**
-	 * 生成地址
-	 * @param srting $key    文件名
-	 * @param string $domain 下载域
-	 */
-	public function MakeBaseUrl($key,$domain=''){
-		if($domain!=''){
-			$this->downDomain = $domain;
-		}
-		$keyEsc = rawurlencode($key);
-		return "http://$this->downDomain/$keyEsc";
-	}
-	/**
-	 * 生成私有地址
-	 * @param srting $baseUrl 基础URL
-	 */
-	public function MakePrivateUrl($baseUrl){
-		$deadline = $this->Expires;
-		if ($deadline == 0) {
-			$deadline = 3600;
-		}
-		$deadline += time();
-
-		$pos = strpos($baseUrl, '?');
-		if ($pos !== false) {
-			$baseUrl .= '&e=';
-		} else {
-			$baseUrl .= '?e=';
-		}
-		$baseUrl .= $deadline;
-		$token = self::Sign($baseUrl);
-		return "$baseUrl&token=$token";
-	}
-
 }
 ?>
