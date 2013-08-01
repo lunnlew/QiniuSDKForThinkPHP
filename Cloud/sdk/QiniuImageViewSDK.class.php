@@ -145,7 +145,7 @@ class QiniuImageViewSDK extends QiniuSDK{
     	if (!empty($this->Format)) {
     		$ops[] = 'format/' . $this->Format;
     	}
-		return $url . "?imageMogr/v2/auto-orient/" . implode('/', $ops);
+		return $url . "?imageMogr/v2/".implode('/', $ops);
 	}
 	//建议在上传图片后进行图片水印预转
 	protected function _make_watermark_Request($url){
