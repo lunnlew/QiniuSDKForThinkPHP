@@ -51,4 +51,37 @@ QiniuSDKForThinkPHP
 	} else {
     	var_dump($ret);
 	}
-
+##### 上传下载接口
+	1、上传字符串
+	import('ORG.Cloud.QiniuSDK');
+	$key1 = "test.png";
+    $Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$Instance->setScope('cdnimg');
+	$upToken=$Instance->Token();
+	list($ret, $err) = $Instance->Put($upToken, $key1, "Qiniu Storage!");
+	if ($err !== null) {
+    	var_dump($err);
+	} else {
+    	var_dump($ret);
+	}
+	2、上传本地文件
+	import('ORG.Cloud.QiniuSDK');
+	$key1 = "test.txt";
+    $Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$upToken=$Instance->Token();
+	list($ret, $err) = $Instance->PutFile($upToken, $key1, __file__, 1);
+	if ($err !== null) {
+    	var_dump($err);
+	} else {
+    	var_dump($ret);
+	}
+	3、 公有资源下载
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.png";
+    $Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$baseurl=QiniuSDK::MakeBaseUrl($key);
+	4、私有资源下载
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.png";
+	$baseurl=QiniuSDK::MakeBaseUrl($key);
+	$privateurl=QiniuSDK::MakePrivateUrl($baseurl);
