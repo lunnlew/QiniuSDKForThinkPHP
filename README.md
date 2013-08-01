@@ -2,6 +2,9 @@ QiniuSDKForThinkPHP
 ===================
 
 使用ThinkPHP封装的七牛云存储API
+
+七牛文档参考 Docs:<a href='http://docs.qiniu.com'>七牛开发平台文档</a>
+
 如何在ThinkPHP中使用
 -------------------
 ### 放置位置
