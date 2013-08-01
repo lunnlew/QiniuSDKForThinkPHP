@@ -79,9 +79,10 @@ QiniuSDKForThinkPHP
 	import('ORG.Cloud.QiniuSDK');
 	$key = "test.png";
     $Instance = QiniuSDK::getInstance('QiniuRSTransfer');
-	$baseurl=QiniuSDK::MakeBaseUrl($key);
+	$baseurl=$Instance->MakeBaseUrl($key);
 	4、私有资源下载
 	import('ORG.Cloud.QiniuSDK');
 	$key = "test.png";
-	$baseurl=QiniuSDK::MakeBaseUrl($key);
-	$privateurl=QiniuSDK::MakePrivateUrl($baseurl);
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$baseurl=$Instance->MakeBaseUrl($key);
+	$privateurl=$Instance->MakePrivateUrl($baseurl);
