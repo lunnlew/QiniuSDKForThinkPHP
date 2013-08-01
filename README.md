@@ -86,3 +86,51 @@ QiniuSDKForThinkPHP
 	$Instance = QiniuSDK::getInstance('QiniuRSTransfer');
 	$baseurl=$Instance->MakeBaseUrl($key);
 	$privateurl=$Instance->MakePrivateUrl($baseurl);
+##### 图像处理接口
+	1、生成缩略图
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.png";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuImageView');
+	$params = array(
+		'Mode'=>2,
+		'Width'=>50,
+		'Height'=>50,
+		'Quality'=>70,
+		'Format'=>'jpg'
+	);
+	echo $Instance->MakeRequest($baseurl,'imageView',$params);
+	2、文字水印
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.png";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuImageView');
+	$params = array(
+		'WaterMode'=>2,
+		'Text'=>'文字水印',
+		'Font'=>'宋体',
+		'Fill'=>'white',
+		'Fontsize'=>1000,
+		'Dissolve'=>85,
+		'Gravity'=>'SouthEast',
+		'Dx'=>10,
+		'Dy'=>10
+		);
+	echo $Instance->MakeRequest($baseurl,'watermark',$params);
+	3、图片水印
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.png";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer');
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuImageView');
+	$params = array(
+		'WaterMode'=>1,
+		'Waterimageurl'=>'http://www.domain.com/water.png',
+		'Dissolve'=>50,
+		'Gravity'=>'SouthEast',
+		'Dx'=>10,
+		'Dy'=>10
+		);
+	echo $Instance->MakeRequest($baseurl,'watermark',$params);

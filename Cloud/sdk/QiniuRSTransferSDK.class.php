@@ -41,12 +41,10 @@ class QiniuRSTransferSDK extends QiniuSDK{
 	public $CheckCrc = 0;
 	//资源下载域名
 	public $downDomain = '';
+
 	public function __construct($scope){
 		$this->Scope = $scope;
 		parent::__construct();
-	}
-	public function setScope($scope){
-		$this->Scope = $scope;
 	}
 	/**
 	 * 授权凭证
