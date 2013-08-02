@@ -134,3 +134,16 @@ QiniuSDKForThinkPHP
 		'Dy'=>10
 		);
 	echo $Instance->MakeRequest($baseurl,'watermark',$params);
+#### 媒体资源接口
+	1、音频转换
+	import('ORG.Cloud.QiniuSDK');
+	$key = "music.mp3";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer','cdnimg');
+	$params = array(
+		'Format'=>'wav',
+		'AudioQuality'=>'3',
+		'SamplingRate'=>'44100'
+		);
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuAudioVisual');
+	echo $Instance->MakeRequest($baseurl,'avthumb',$params);
