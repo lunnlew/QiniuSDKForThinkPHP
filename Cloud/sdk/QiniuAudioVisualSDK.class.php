@@ -128,7 +128,7 @@ class QiniuAudioVisualSDK extends QiniuSDK{
     		$ops[] = $this->Format;
     	}
     	if (!empty($this->Offset)) {
-    		$ops[] = 'offset/' . $this->Offsete;
+    		$ops[] = 'offset/' . $this->Offset;
     	}
     	if (!empty($this->Width)) {
     		$ops[] = 'w/' . $this->Width;

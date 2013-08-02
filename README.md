@@ -147,3 +147,32 @@ QiniuSDKForThinkPHP
 	$baseurl = $Instance->MakeBaseUrl($key);
 	$Instance = QiniuSDK::getInstance('QiniuAudioVisual');
 	echo $Instance->MakeRequest($baseurl,'avthumb',$params);
+	2、视频转换
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.mp4";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer','cdnimg');
+	$params = array(
+		'Format'=>'flv',
+		'FrameRate'=>'30',
+		'VideoBitRate'=>'256k',
+		'Vcodec'=>'ibx264',
+		'SamplingRate'=>'22050',
+		'BitRate'=>'64k',
+		'Acodec'=>'libmp3lame',
+		);
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuAudioVisual');
+	echo $Instance->MakeRequest($baseurl,'avthumb',$params);
+	2、视频缩略图
+	import('ORG.Cloud.QiniuSDK');
+	$key = "test.mp4";
+	$Instance = QiniuSDK::getInstance('QiniuRSTransfer','cdnimg');
+	$params = array(
+		'Format'=>'jpg',
+		'Offset'=>'7',
+		'Width'=>'480',
+		'Height'=>'360',
+		);
+	$baseurl = $Instance->MakeBaseUrl($key);
+	$Instance = QiniuSDK::getInstance('QiniuAudioVisual');
+	echo $Instance->MakeRequest($baseurl,'vframe',$params);
