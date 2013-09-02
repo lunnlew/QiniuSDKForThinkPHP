@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 QiniuSDKForThinkPHP
 ===================
 
@@ -269,4 +268,3 @@ QiniuSDKForThinkPHP
 	$baseurl = $Instance->MakeBaseUrl($key);
 	$Instance = QiniuSDK::getInstance('QiniuAudioVisual');
 	echo $Instance->MakeRequest($baseurl,'vframe',$params);
->>>>>>> origin/Develop
